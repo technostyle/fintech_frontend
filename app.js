@@ -1,5 +1,5 @@
-var first = prompt('enter first string');
-var second = prompt('enter second string');
+var first = prompt("enter first string");
+var second = prompt("enter second string");
 
 
 function is_anagram(first, second){
