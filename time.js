@@ -1,8 +1,7 @@
-var j = 5;
-alert("piska " j);
-
+var j = 0;
 for (var i = 0; i < 10; i++) {
    setTimeout(function(){
-       alert(i);
+      j++;
+      console.log(j);
    }, i * 1000);
 }
