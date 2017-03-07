@@ -9,7 +9,7 @@ function is_anagram(first, second){
 		return false
 
 	var str = second;
-	var cur, index
+	var cur, index;
 	for (var i = 0; i < first_length; i++)
 	{
 		cur = first.charAt(i);
