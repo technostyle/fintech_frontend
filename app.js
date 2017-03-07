@@ -1,5 +1,5 @@
-var first = prompt();
-var second = prompt();
+var first = prompt('enter first string');
+var second = prompt('enter second string');
 
 
 function is_anagram(first, second){
@@ -16,7 +16,7 @@ function is_anagram(first, second){
 		index = str.indexOf(cur);
 		if (index == -1)
 			return false;
-		str = str.substring(0, index) + str.substring(index + 1, first_length);
+		str = str.substring(0, index) + str.substring(index + 1);
 	}
 
 	return true;
