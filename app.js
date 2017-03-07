@@ -6,7 +6,7 @@ function is_anagram(first, second){
 
 	var first_length = first.length;
 	if (first_length != second.length)
-		return false
+		return false;
 
 	var str = second;
 	var cur, index;
