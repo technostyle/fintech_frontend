@@ -1,4 +1,4 @@
 
 prompt(first);
-alert(first);
+alert('piska');
 alert('Скрипт работает');
