@@ -1,6 +1,6 @@
-
 var first;
-first = 'zalupa';
+
+alert('etner something');
+prompt(first);
 alert(first);
-alert('piska');
 alert('Скрипт работает');
