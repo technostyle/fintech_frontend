@@ -4,7 +4,7 @@ var second = prompt();
 
 function is_anagram(first, second){
 
-	var first_length = first.length
+	var first_length = first.length;
 	if (first_length != second.length)
 		return false
 
