@@ -2,6 +2,7 @@ var j = 0;
 for (var i = 0; i < 10; i++) {
    setTimeout(function(){
       j++;
-      console.log(j);
+//      console.log(j);
+      alert(j);
    }, i * 1000);
 }
