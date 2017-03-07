@@ -1,6 +1,6 @@
 var first;
 
 alert('etner something');
-prompt(first);
+first = prompt();
 alert(first);
 alert('Скрипт работает');
