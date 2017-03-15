@@ -28,8 +28,8 @@ alert("__2.4__" + greet());
 //................... task 2.5 .........................
 var summer = {
 	val : 0,
-	sum : function(x = 0) {
-		if (x == 0) {
+	sum : function(x) {
+		if (x === undefined) {
 			var ans = this.val;
 			this.val = 0;
 			return ans;
@@ -40,8 +40,9 @@ var summer = {
 	}
 };
 
+
 var sum = summer.sum.bind(summer);
 alert("__2.5__\nsum(1)(2)() = " + sum(1)(2)() + 
       "\nsum(1)(2)(3)() = " + sum(1)(2)(3)() + 
       "\nsum(1)(2)(-5)() = " + sum(1)(2)(-5)() +
-      "\nsum(1)(2)(-5)() = " + sum(1)(0)(3)());
+      "\nsum(1)(0)(3)() = " + sum(1)(0)(3)());
