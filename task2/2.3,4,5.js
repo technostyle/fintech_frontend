@@ -4,8 +4,7 @@ var res = doubleArr.reduce(function (total, current) {
 	return total.concat(current);
 }, []); 
 
-alert("__2.3__ double array : [8, 4, [4, 6], 0, [1, 2, 3]]");
-alert("single array : " + res);
+alert("__2.3__ double array : [8, 4, [4, 6], 0, [1, 2, 3]] \nsingle array : " + res);
 
 
 //................... task 2.4 .........................
