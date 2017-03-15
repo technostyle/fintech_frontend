@@ -4,7 +4,7 @@ var res = doubleArr.reduce(function (total, current) {
 	return total.concat(current);
 }, []); 
 
-alert("__2.3__ double array : [8, 4, [4, 6], 0, [1, 2, 3]] \nsingle array : " + res);
+alert("__2.3__ \n double array : [8, 4, [4, 6], 0, [1, 2, 3]] \n single array : " + res);
 
 
 //................... task 2.4 .........................
@@ -41,4 +41,7 @@ var summer = {
 };
 
 var sum = summer.sum.bind(summer);
-alert("__2.5__\nsum(1)(2)() = " + sum(1)(2)() + "\nsum(1)(2)(3)() = " + sum(1)(2)(3)()  + "\nsum(1)(2)(-5)() = " + sum(1)(2)(-5)());
+alert("__2.5__\nsum(1)(2)() = " + sum(1)(2)() + 
+      "\nsum(1)(2)(3)() = " + sum(1)(2)(3)() + 
+      "\nsum(1)(2)(-5)() = " + sum(1)(2)(-5)() +
+      "\nsum(1)(2)(-5)() = " + sum(1)(0)(3)());
