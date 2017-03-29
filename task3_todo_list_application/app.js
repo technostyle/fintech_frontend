@@ -4,16 +4,12 @@ var ENTER_KEYCODE = 13;
 
 var listElement = document.querySelector('.list');
 
-//============================================================
-//======================== MY CODE ===========================
-//============================================================
-document.getElementById("statistic__all__value").innerHTML = 0;
-document.getElementById("statistic__done__value").innerHTML = 0;
-document.getElementById("statistic__left__value").innerHTML = 0;
-//============================================================
-//=================== END OF MY CODE =========================
-//============================================================
+document.getElementById('statistic__all__value').innerHTML = 0;
+document.getElementById('statistic__done__value').innerHTML = 0;
+document.getElementById('statistic__left__value').innerHTML = 0;
 
+var filters = document.querySelector('.filters');
+var currentFilter = 'all';
 
 var templateElement = document.getElementById('todoTemplate');
 var templateContainer = 'content' in templateElement ? templateElement.content : templateElement;
@@ -23,6 +19,10 @@ function addTodoFromTemplate(todo) {
     var newElement = templateContainer.querySelector('.task').cloneNode(true);
     newElement.querySelector('.task__name').textContent = todo.name;
     setTodoStatusClassName(newElement, todo.status === 'todo');
+
+    // Фильтруем визуализацию
+    if (currentFilter === 'done')
+        newElement.classList.add('hidden');
 
     return newElement;
 }
@@ -59,41 +59,24 @@ function changeTodoStatus(element) {
     var isTodo = element.classList.contains('task_todo');
     setTodoStatusClassName(element, !isTodo);
 
-//============================================================
-//======================== MY CODE ===========================
-//============================================================
-    /*
-        if (isTodo) {
-            doneTasksCounter(1);
-            leftTasksCounter(-1);
-        }
-        else {
-            doneTasksCounter(-1);
-            leftTasksCounter(1);
-        }
-    */
-    // isTodo == True -- done
+    // Рендерим статистику
     doneTasksCounter(2 * isTodo - 1);
     leftTasksCounter(1 - 2 * isTodo);
-//============================================================
-//=================== END OF MY CODE =========================
-//============================================================
+
+    // Фильтруем визуализацию
+    if (currentFilter !== 'all')
+        element.classList.add('hidden');
 
 }
 
 function deleteTodo(element) {
     listElement.removeChild(element);
     var isTodo = element.classList.contains('task_todo');
-//============================================================
-//======================== MY CODE ===========================
-//============================================================
+
+    // Рендерим статистику
     doneTasksCounter(-!isTodo);
     leftTasksCounter(-isTodo);
     allTaskCounter(-1);
-//============================================================
-//=================== END OF MY CODE =========================
-//============================================================
-
 }
 
 function onInputKeydown(event) {
@@ -110,14 +93,11 @@ function onInputKeydown(event) {
 
     var todo = createNewTodo(todoName);
     insertTodoElement(addTodoFromTemplate(todo));
-//============================================================
-//======================== MY CODE ===========================
-//============================================================
+
+    // Рендерим статистику
     leftTasksCounter(1);
     allTaskCounter(1);
-//============================================================
-//=================== END OF MY CODE =========================
-//============================================================
+
     inputElement.value = '';
 }
 
@@ -152,9 +132,6 @@ function insertTodoElement(elem) {
     }
 }
 
-//============================================================
-//======================== MY CODE ===========================
-//============================================================
 
 function doneTasksCounter(count) {
     var done = parseInt(document.getElementById("statistic__done__value").innerHTML)
@@ -171,78 +148,56 @@ function allTaskCounter(count) {
     document.getElementById("statistic__all__value").innerHTML = all + count;
 
 }
-//============================================================
-//=================== END OF MY CODE =========================
-//============================================================
 
 
 
-
-//============================================================
-//======================== MY CODE ===========================
-//======================== FILTERS ===========================
-//============================================================
-
-var filters = document.querySelector('.filters');
 filters.addEventListener('click', onFilterClick);
 
 function onFilterClick(event) {
     var target = event.target;
 
+    document.querySelector('.filters__item_selected').classList.remove('filters__item_selected');
+    target.classList.add('filters__item_selected');
 
     var tasksToHide = [];
     var tasksToShow = [];
 
 
     if (isAllBtn(target)) {
+        currentFilter = 'all';
         tasksToShow = document.querySelectorAll('.task_todo, .task_done');
     }
 
     if (isDoneBtn(target)) {
+        currentFilter = 'done';        
         tasksToShow = document.querySelectorAll('.task_done');
         tasksToHide = document.querySelectorAll('.task_todo');
     }
 
     if (isTodoBtn(target)) {
+        currentFilter = 'todo';
         tasksToShow = document.querySelectorAll('.task_todo');
         tasksToHide = document.querySelectorAll('.task_done');
     }
 
 
     for (var i = 0; i < tasksToShow.length; i++) {
-        tasksToShow[i].style.display = 'list-item';
+        tasksToShow[i].classList.remove('hidden');
     }
 
     for (var i = 0; i < tasksToHide.length; i++) {
-        tasksToHide[i].style.display = 'none';
+        tasksToHide[i].classList.add('hidden');
     }
 }
 
 function isAllBtn(target) {
-    document.querySelector('.filters__item_selected').classList.remove("filters__item_selected");
-    target.classList.add('filters__item_selected');
     return target.attributes['data-filter']['nodeValue'] === 'all';
 }
 
 function isDoneBtn(target) {
-    // Почему код работает без этого участка?
-/*
-    document.querySelector('.filters__item_selected').classList.remove("filters__item_selected")
-    target.classList.add('filters__item_selected')
-*/
     return target.attributes['data-filter']['nodeValue'] === 'done';
 }
 
 function isTodoBtn(target) {
-    // Почему код работает без этого участка?
-/*
-    document.querySelector('.filters__item_selected').classList.remove("filters__item_selected")
-    target.classList.add('filters__item_selected')
-*/
     return target.attributes['data-filter']['nodeValue'] === 'todo';
 }
-
-//============================================================
-//===================== END OF MY CODE =======================
-//======================== FILTERS ===========================
-//============================================================
