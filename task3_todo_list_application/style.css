@@ -176,6 +176,9 @@ body {
     visibility: visible;
 }
 
+.hidden {
+    display: none;
+}
 /*=====  End of TASK  ======*/
 
 
