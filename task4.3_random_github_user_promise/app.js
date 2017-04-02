@@ -28,11 +28,12 @@ function makeGetRequest(url) {
 
 randomButtonElement.onclick = function () {
     makeGetRequest('https://api.github.com/users')
-        .then(function (request) {
-            return data = JSON.parse(request);
-        })
-        .then(function (data) {
-            return user = data[Math.floor(Math.random() * data.length)];
+        .then(request => JSON.parse(request))
+        .then(data => data[Math.floor(Math.random() * data.length)])
+        .then(function (user) {
+            var img = new Image();
+            img.src = user.avatar_url;
+            return user;
         })
         .then(function (user) {
             hideError();
@@ -43,6 +44,7 @@ randomButtonElement.onclick = function () {
             console.log(error);
         });
 };
+
 
 function showError(err) {
     errorElement.textContent = err;
