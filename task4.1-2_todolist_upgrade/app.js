@@ -101,16 +101,13 @@ inputElement.addEventListener('keydown', onInputKeydown);
  =            СТАТИСТИКА            =
  ==================================*/
 
-
-//=============================================================================
-
-function Statistic() {
-	this.done = 0;
-	this.todo = 0;
-	this.element = document.querySelector('.statistic');
-	this.donelElement = this.element.querySelector('.statistic__done');
-	this.todoElement = this.element.querySelector('.statistic__left');
-	this.totalElement = this.element.querySelector('.statistic__total');
+function Statistic(elemClass, doneElemClass, todoElemClass, totalElemClass) {
+    this.done = 0;
+    this.todo = 0;
+    this.element = document.querySelector(elemClass);
+    this.donelElement = this.element.querySelector(doneElemClass);
+    this.todoElement = this.element.querySelector(todoElemClass);
+    this.totalElement = this.element.querySelector(totalElemClass);
 }
 
 Statistic.prototype.renderStats = renderStats;
@@ -118,10 +115,7 @@ Statistic.prototype.addToStats = addToStats;
 Statistic.prototype.changeStats = changeStats;
 Statistic.prototype.deleteFromStats = deleteFromStats;
 
-var stats = new Statistic();
-
-console.log(Statistic.prototype)
-//=============================================================================
+var stats = new Statistic('.statistic', '.statistic__done', '.statistic__left', '.statistic__total');
 
 // создадим функции работы со статистикой
 /**
