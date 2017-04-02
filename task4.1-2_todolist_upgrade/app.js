@@ -394,14 +394,22 @@ stats.renderStats();
 
 
 
-// приведение даты к красивому виду
 function renderDate(elem){
     var now = new Date();
-    elem.querySelector('.task__time').textContent = now.toLocaleTimeString();
+    elem.querySelector('.task__time').textContent = getCurrentTime(now);
+    elem.querySelector('.task__date').textContent = getCurrentDate(now);
+}
 
-    var date = now.getDate();// + "/" + now.getMonth() + "/" + now.getYear().toString().slice(1);
+function getCurrentTime(now) {
+    var hours = now.getHours(); if (hours < 10) hours = '0' + hours;
+    var minutes = now.getMinutes(); if (minutes < 10) minutes = '0' + minutes;
+    var seconds = now.getSeconds(); if (seconds < 10) seconds = '0' + seconds;
+    return hours + ':' + minutes + ":" + seconds;
+}
+
+function getCurrentDate(now) {
+    var date = now.getDate(); if (date < 10) date = '0' + date;
     var month = now.getMonth() + 1; if (month < 10) month = '0' + month;
     var year = now.getFullYear().toString().slice(2);
-
-    elem.querySelector('.task__date').textContent = date + '/' + month + '/' + year;
+    return date + '/' + month + '/' + year;
 }
