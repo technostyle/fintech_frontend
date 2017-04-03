@@ -26,15 +26,27 @@ function makeGetRequest(url) {
 
 }
 
+function loadImage(user) {
+    return new Promise(function(resolve, reject) {
+        var img = new Image();
+
+        img.onload = function () {
+            resolve(user);
+        };
+
+        img.onerror = function () {
+            reject(new Error('Что-то пошло не так'));
+        };
+
+        img.src = user.avatar_url;
+    });
+}
+
 randomButtonElement.onclick = function () {
     makeGetRequest('https://api.github.com/users')
         .then(request => JSON.parse(request))
         .then(data => data[Math.floor(Math.random() * data.length)])
-        .then(function (user) {
-            var img = new Image();
-            img.src = user.avatar_url;
-            return user;
-        })
+        .then(user => loadImage(user))
         .then(function (user) {
             hideError();
             drawUser(user);
@@ -44,6 +56,7 @@ randomButtonElement.onclick = function () {
             console.log(error);
         });
 };
+
 
 
 function showError(err) {
